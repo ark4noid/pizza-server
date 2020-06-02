@@ -5,6 +5,6 @@ module.exports = {
     static: {
         upload: 'upload'
     },
-    port: 3005,
+    port: process.env.PORT || 3005,
     imagesDir: 'images'
 }
