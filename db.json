@@ -10,7 +10,7 @@
     },
     "comments": {
       "relations": [
-        { 
+        {
           "hasOne": "pizza",
           "fromCollection": "pizzas",
           "withMany": "comments"
@@ -42,8 +42,8 @@
       "name": "Carbonara",
       "img": "/images/4ca194dffa4c5212cf53c259aac960856a8c.png",
       "ingredients": [
-          "17104efb-392e-4942-87c7-5dafd259e7e1",
-          "bab7d176-ea27-4815-b4c8-6054cf33e2dd"
+        "17104efb-392e-4942-87c7-5dafd259e7e1",
+        "bab7d176-ea27-4815-b4c8-6054cf33e2dd"
       ]
     },
     {

@@ -1,5 +1,5 @@
 const express = require('express');
-const handlers = require('./handlers');
+const controllers = require('./controllers');
 const middlewares = require('./middlewares');
 function create(dbManager, config){
     const api = express.Router();
@@ -8,8 +8,8 @@ function create(dbManager, config){
         next();
     });
     api.use(middlewares.before);
-    handlers.forEach((handler) => {
-        handler(api);
+    controllers.forEach((controller) => {
+        controller(api);
     });
     api.use(middlewares.after);
     return api;

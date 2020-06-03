@@ -1,18 +1,18 @@
 const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+const FileAsync = require('lowdb/adapters/FileAsync')
 const uuid = require('uuid');
 
 class DBManager {
-    static create(json){
-        const adapter = new FileSync(json);
-        const db = low(adapter);
+    static async create(json){
+        const adapter = new FileAsync(json);
+        const db = await low(adapter);
         return new this(db);
     }
     constructor(db) {
         this._db = db;
         this._config = this._readConfig();
     }
-    get(uri, options = {}){
+    async get(uri, options = {}){
         const {include = []} = options;
         const [collection, id] = this._split(uri);
         const query = this._query(collection, id);
@@ -22,28 +22,29 @@ class DBManager {
         this._include(resource, collection, include);
         return resource;
     }
-    create(uri, data){
+    async create(uri, data){
         const [collection] = this._split(uri);
         const id = uuid.v4();
-        this._query(collection)
+        await this._query(collection)
             .push({ id, ...data})
             .write();
         return this._query(collection, id)
             .cloneDeep()
             .value();
     }
-    remove(uri){
+    async remove(uri){
         const [collection, id] = this._split(uri);
-        this._query(collection)
+        await this._query(collection)
             .remove({id})
             .write();
     }
-    update(uri, data){
+    async update(uri, data){
         const [collection, id] = this._split(uri);
-        return this._query(collection, id)
+        const resource = await this._query(collection, id)
             .assign(data)
             .cloneDeep()
             .write();
+        return resource;
     }
     _readConfig(){
         return this._db
