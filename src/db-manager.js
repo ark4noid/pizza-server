@@ -13,9 +13,9 @@ class DBManager {
         this._config = this._readConfig();
     }
     async get(uri, options = {}){
-        const {include = []} = options;
+        const {include = [], find} = options;
         const [collection, id] = this._split(uri);
-        const query = this._query(collection, id);
+        const query = this._query(collection, id, find);
         const resource = query
             .cloneDeep()
             .value();
@@ -57,10 +57,13 @@ class DBManager {
             .split('/')
             .filter(Boolean);
     }
-    _query(collection, id){
+    _query(collection, id, find){
         let query = this._db.get(collection);
         if(id) {
             query = query.find({id});
+        }
+        if(find){
+            query = query.find(find);
         }
         return query;
     }

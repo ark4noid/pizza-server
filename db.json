@@ -26,7 +26,7 @@
     {
       "id": "b11487c1-d6f9-4f33-ba19-8587dffb75e0",
       "email": "test@test.com",
-      "password": "123",
+      "password": "$2y$10$wlvoc5YcAqNYdlzdsK.ZBuKTUJGRYtRqc9qwwRdHIvkouBWehl9G6",
       "name": "test"
     }
   ],

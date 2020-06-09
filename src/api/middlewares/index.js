@@ -1,11 +1,5 @@
-const bodyParser = require('body-parser');
-
 module.exports = {
-    before: [
-        bodyParser.urlencoded({ extended: false}),
-        bodyParser.json()
-    ],
-    after: [
-        require('./error')
-    ]
+    error: require('./error'),
+    provider: require('./provider'),
+    auth: require('./auth')
 };

@@ -1,5 +1,13 @@
-module.exports = [
-    require('./pizzas'),
-    require('./comments'),
-    require('./base')
-]
+module.exports = {
+    public: [
+        require('./register'),
+        require('./login'),
+        require('./logout'),
+        require('./refresh')
+    ],
+    private: [
+        require('./pizzas'),
+        require('./comments'),
+        require('./base')
+    ]
+}
