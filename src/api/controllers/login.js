@@ -1,5 +1,6 @@
 module.exports = (api) => {
     api.post('/login', (req, res) => {
+        const jwt = req.$.jwt
         // TODO: comprobar que user y pass son correctos
         // req.$.dbManger.get('users', {find: {email, password: bcrypt(body.password)}})
 
