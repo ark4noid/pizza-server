@@ -24,16 +24,17 @@ module.exports = (api) => {
             ...user,
             password:undefined
         };
-        const authToken = await jwt.sign({userModel},"secret",{algorithm: 'HS512', expiresIn: 5 * 60})
+        const authToken = await jwt.sign({userModel},"secret1",{algorithm: 'HS512', expiresIn: 5 * 60})
         //console.log(authtoken) para hacer postman y jwt.io
-        const refreshToken = await jwt.sign({userModel}, "secret",{algorithm: 'HS512', expireIn: 30 * 24 * 60 * 60 })
+        const refreshToken = await jwt.sign({userModel}, "secret2",{algorithm: 'HS512', expiresIn: 30 * 24 * 60 * 60 })
         //res.cookie("name", "value"),
-            res.cookie('refeshToken','secret',{
+            res.cookie('refresh', refreshToken, {
                 httpOnly:true,
                 maxAge: 30 * 24 * 60 * 60 * 1000,
                 sameOrigin: 'none'
             })
-            .status(200),
+            .json({token:authToken})
+            .status(200)
             .end();
     })
 }
