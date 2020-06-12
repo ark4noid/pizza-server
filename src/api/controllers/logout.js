@@ -5,7 +5,8 @@ module.exports = (api) => {
         res
             .clearCookie(refreshCookie, { 
                 httpOnly: true,
-                sameSite:'none'
+                sameSite:'none',
+                secure: config.protocol === 'https'
             })
             .status(204)
             .end();

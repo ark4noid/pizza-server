@@ -5,7 +5,9 @@ module.exports = {
     static: {
         upload: 'upload'
     },
+    protocol: process.env.PROTOCOL || 'http',
     port: process.env.PORT || 3005,
+    origin: process.env.ORIGIN || 'http://localhost:3005',
     imagesDir: 'images',
     authentication: {
         algorithm: 'HS512',
@@ -14,5 +16,6 @@ module.exports = {
         refreshSecret: process.env.REFRESH_SECRET || 'secret2',
         refreshTTL: 30 * 24 * 60 * 60,
         refreshCookie: '_hsrfr'
-    }
+    },
+    allowedOrigins:  ['https://www.google.es', 'http://localhost:3000']
 }
